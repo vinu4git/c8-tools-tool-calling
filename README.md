@@ -218,8 +218,8 @@ fastmcp call http://localhost:8000/mcp get_lecture number=12
 The same two commands, with the new address:
 
 ```bash
-fastmcp list https://your-server-name.fastmcp.app/mcp
-fastmcp call https://your-server-name.fastmcp.app/mcp get_lecture number=12
+fastmcp list https://cautious-moccasin-trout.fastmcp.app/mcp
+fastmcp call https://cautious-moccasin-trout.fastmcp.app/mcp get_lecture number=12
 ```
 
 Then open **ChatMCP** on your server's Gateway page and ask it about Lecture 12. That is a second app using your tool. You wrote no code for it.
