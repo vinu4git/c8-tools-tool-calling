@@ -10,6 +10,13 @@ SHEET = "https://docs.google.com/spreadsheets/d/1Kg6T-dJWaYx_JCPiRk3u0nBuAQcsCVR
 mcp = FastMCP("100x curriculum")
 
 # Step 1. Move get_lecture here from tool_call.py and put @mcp.tool on the line above it.
+@mcp.tool
+def get_lecture(number: Annotated[int, "The lecture number to retrieve"]) -> dict:
+    """gets the lecture details for the given lecture number"""
+    for row in csv.reader(io.StringIO(requests.get(SHEET).text)):
+        if row[1].startswith(f"{number}. "):
+            return {"date": row[0], "title": row[1], "type": row[2], "tools": row[3]}
+    return {"error": f"There is no lecture {number}. Lectures run from 1 to 19."}
 
 # Step 2. Write the card into the function itself: a docstring and a type hint.
 
