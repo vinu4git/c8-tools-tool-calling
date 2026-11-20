@@ -10,7 +10,7 @@ if not os.environ.get("GROQ_API_KEY"):
 
 # ---------- THE SHEET (given) ----------
 # Plain code, no model: one lecture of the course sheet, looked up by its number.
-SHEET = "https://docs.google.com/spreadsheets/d/1Kg6T-dJWaYx_JCPiRk3u0nBuAQcsCVRDPj1NFKP4WzM/gviz/tq?tqx=out:csv&headers=0&gid=368290478"
+SHEET = os.environ.get("SHEET") or "https://docs.google.com/spreadsheets/d/1Kg6T-dJWaYx_JCPiRk3u0nBuAQcsCVRDPj1NFKP4WzM/gviz/tq?tqx=out:csv&headers=0&gid=368290478"
 
 def get_lecture(number):
     for row in csv.reader(io.StringIO(requests.get(SHEET).text)):

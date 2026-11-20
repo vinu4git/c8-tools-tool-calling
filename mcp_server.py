@@ -1,11 +1,13 @@
 """Part 2: the same tool on the sheet's side, as an MCP server.  Run: python mcp_server.py
 The steps are in README.md."""
+import os
 import csv, io, socket
 from typing import Annotated
+from dotenv import load_dotenv
 import requests
 from fastmcp import FastMCP
-
-SHEET = "https://docs.google.com/spreadsheets/d/1Kg6T-dJWaYx_JCPiRk3u0nBuAQcsCVRDPj1NFKP4WzM/gviz/tq?tqx=out:csv&headers=0&gid=368290478"
+load_dotenv()
+SHEET = os.environ.get("SHEET") or "https://docs.google.com/spreadsheets/d/1Kg6T-dJWaYx_JCPiRk3u0nBuAQcsCVRDPj1NFKP4WzM/gviz/tq?tqx=out:csv&headers=0&gid=368290478"
 
 mcp = FastMCP("100x curriculum")
 

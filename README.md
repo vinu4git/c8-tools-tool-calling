@@ -239,6 +239,17 @@ Do it once more with data you care about: your own Google Sheet, a CSV file, a S
 
 Once you're done, submit it on the LMS. We go through them in the office hour.
 
+
+## My own data
+
+| Question | Should it ask for the tool? | Did it? |
+|---|---|---|
+| When is Lecture 10 of 100xEngineers Cohort 8, and what is it about? | Yes | Yes |
+| Which tools do we use in the eigth class? | Yes | Yes |
+| What is https? | No | No|
+| Is session seven a combined one or separate? | Yes | Yes |
+| In lecture 3 of Harvard CS50, which language is taught? | No | No |
+
 ## If something goes wrong
 
 | You see | Fix |
