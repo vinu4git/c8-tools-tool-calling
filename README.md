@@ -137,11 +137,11 @@ The model reads only the card. First fill in the middle column. Then run each qu
 
 | Question | Should it ask for the tool? | Did it? |
 |---|---|---|
-| When is Lecture 12 of 100xEngineers Cohort 8, and what is it about? | | |
-| Which tools do we use in the seventh class? | | |
-| What is an API? | | |
-| Is session ten a combined one or separate? | | |
-| In lecture 3 of Harvard CS50, which language is taught? | | |
+| When is Lecture 12 of 100xEngineers Cohort 8, and what is it about? | Yes | Yes |
+| Which tools do we use in the seventh class? | Yes | Yes |
+| What is an API? | No | No|
+| Is session ten a combined one or separate? | Yes | Yes |
+| In lecture 3 of Harvard CS50, which language is taught? | No | No |
 
 ```bash
 python tool_call.py "Which tools do we use in the seventh class?"

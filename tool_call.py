@@ -38,18 +38,39 @@ messages = [{"role": "user", "content": question}]
 # Step 2. The card: fill in the two empty strings.
 card = {"type": "function", "function": {
     "name": "get_lecture",
-    "description": "",                                                    # Use it when
+    "description": "gets the lecture details for the given lecture number",                                                    # Use it when
     "parameters": {"type": "object",
                    "properties": {"number": {"type": "integer",
-                                             "description": ""}},         # It needs
+                                             "description": "The lecture number to retrieve"}},         # It needs
                    "required": ["number"]},
 }}
 
-reply = ask_model(messages)                 # Step 2: send the card too
+reply = ask_model(messages,[card])                 # Step 2: send the card too
 print(json.dumps(reply, indent=2, ensure_ascii=False))
 
-# Step 3. Run the request the model wrote.
 
-# Step 4. Hand the result back to the model and print its answer.
+
+# # Step 3. Run the request the model wrote.
+# argument=json.loads(reply["tool_calls"][0]["function"]["arguments"])
+# get_lecture_result = get_lecture(argument["number"])
+# print(json.dumps(get_lecture_result, indent=2, ensure_ascii=False))
+
+
+# # Step 4. Hand the result back to the model and print its answer.
+# messages.append(reply)
+# messages.append({"role": "tool", "tool_call_id": reply["tool_calls"][0]["id"], "name": "get_lecture", "content": json.dumps(get_lecture_result)})
+# reply2 = ask_model(messages,[card])
+# print(json.dumps(reply2, indent=2, ensure_ascii=False))
 
 # Step 5. Turn steps 3 and 4 into a loop.
+while reply.get("tool_calls"):
+    messages.append(reply)
+    for tool_call in reply["tool_calls"]:
+        if tool_call["function"]["name"] == "get_lecture":
+            argument=json.loads(tool_call["function"]["arguments"])
+            get_lecture_result = get_lecture(argument["number"])
+            print(json.dumps(get_lecture_result, indent=2, ensure_ascii=False))
+            messages.append({"role": "tool", "tool_call_id": tool_call["id"], "name": "get_lecture", "content": json.dumps(get_lecture_result)})
+    reply = ask_model(messages,[card])
+
+print(json.dumps(reply, indent=2, ensure_ascii=False))
